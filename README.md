@@ -1,18 +1,59 @@
-# [PROJECT NAME]
+# ESD Cloud Migration Toolkit
 
-## Overview
+Lightweight Python tools for working with folders and migrating scientific data.
+
+- Contact: Data Services Team
+
+## Folder Stats Tool
+
+The Folder Stats Tool scans the immediate subdirectories of a selected folder or mapped drive and exports their statistics to a CSV file.
+
+- Recursively calculates folder sizes in TB, GB, and MB.
+- Optionally counts files and subfolders.
+- Processes top-level folders in parallel.
+- Saves the CSV report in the selected folder.
 
 ## Prerequisites
 
-## Installing
-
-## Resources
-
-## Version Control Platform
+- Python 3
 - Git
 
+## Install
+
+Clone the repository and change to its directory:
+
+```powershell
+git clone https://github.com/noaa-pifsc/esd-cloud-migration-toolkit.git
+cd esd-cloud-migration-toolkit
+```
+
+Create and activate a virtual environment, then install the dependencies:
+
+```cmd
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+If PowerShell prevents virtual environment activation, run this once in the current PowerShell session and activate again:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+## Use
+
+Start the graphical application:
+
+```
+python folder_stats_2026_multi.py
+```
+
+Choose the folder or mapped drive to scan. The tool reports each immediate subfolder and writes a timestamped `*_network_folder_stats.csv` file to the selected location. Enable **Include file/folder count** to calculate counts as well as sizes; leave it unchecked for size-only scanning. Adjust **Number of parallel threads** if needed.
+
 ## License
-See the [LICENSE.md](./LICENSE.md) for details
+
+See [LICENSE.md](./LICENSE.md) for details.
 
 ## Disclaimer
-This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
+
+This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an “as is” basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
