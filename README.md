@@ -4,6 +4,10 @@ Lightweight Python tools for working with folders and migrating scientific data.
 
 - Contact: Data Services Team
 
+## Related Tools
+
+- [Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
+
 ## Folder Stats Tool
 
 The Folder Stats Tool scans the immediate subdirectories of a selected folder or mapped drive and exports their statistics to a CSV file.
