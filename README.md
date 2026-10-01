@@ -14,6 +14,7 @@ The Folder Stats Tool scans the immediate subdirectories of a selected folder or
 - Saves the CSV report in the selected folder.
 
 ## 2. Data Tracker
+- [Google Sheet](https://docs.google.com/spreadsheets/d/1SSP4OPzdc-uV8sBvzbyEM-jg4IpOI6xbK7ahS5Dm4ig)
 
 ## 3. Data Cleaner
 
