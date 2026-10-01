@@ -3,6 +3,14 @@
 Lightweight Open Source Python tools for working with folders and migrating scientific data to the cloud.
 
 - Contact: Data Services Team
+### Table of Contents
+1. [Folder Stats Tool](#folder-stats-tool)
+2. [Data Tracker Tool](#data-tracker)
+3. [Data Cleaner Tool](#data-cleaner-tool)
+4. [Data Upload Tool](#data-upload-tool)
+
+<a href=""><img align="right" src="./screenshots/folder_stats.png" alt="Folder Stats" width=400px></a>
+
 
 ## 1. Folder Stats Tool
 
@@ -12,18 +20,6 @@ The Folder Stats Tool scans the immediate subdirectories of a selected folder or
 - Optionally counts files and subfolders.
 - Processes top-level folders in parallel.
 - Saves the CSV report in the selected folder.
-
-## 2. Data Tracker
-- [Google Sheet](https://docs.google.com/spreadsheets/d/1SSP4OPzdc-uV8sBvzbyEM-jg4IpOI6xbK7ahS5Dm4ig)
-
-## 3. Data Cleaner
-
-## 4. Data Upload Tool
--  [Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
-
-## Prerequisites
-- Python
-- Git
 
 ## Install
 Clone the repository and change to its directory:
@@ -43,6 +39,27 @@ python folder_stats_2026_multi.py
 ```
 
 Choose the folder or mapped drive to scan. The tool reports each immediate subfolder and writes a timestamped `*_network_folder_stats.csv` file to the selected location. Enable **Include file/folder count** to calculate counts as well as sizes; leave it unchecked for size-only scanning. Adjust **Number of parallel threads** if needed.
+
+
+## 2. Data Tracker
+- [PIFSC ESD ARP Google Sheet Migration Tracker](https://docs.google.com/spreadsheets/d/1SSP4OPzdc-uV8sBvzbyEM-jg4IpOI6xbK7ahS5Dm4ig)
+
+## 3. Data Cleaner
+### Placeholder
+
+<a href=""><img align="right" src="./screenshots/jetstream.png" alt="Folder Stats" width=400px></a>
+
+
+## 4. Data Upload Tool
+
+- [Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
+
+
+
+
+
+
+
 
 ## License
 
