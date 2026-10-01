@@ -1,14 +1,10 @@
 # Cloud Migration Toolkit
 
-Lightweight Python tools for working with folders and migrating scientific data.
+Lightweight Open Source Python tools for working with folders and migrating scientific data to the cloud.
 
 - Contact: Data Services Team
 
-## Related Tools
-
-- [Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
-
-## Folder Stats Tool
+## 1. Folder Stats Tool
 
 The Folder Stats Tool scans the immediate subdirectories of a selected folder or mapped drive and exports their statistics to a CSV file.
 
@@ -17,36 +13,25 @@ The Folder Stats Tool scans the immediate subdirectories of a selected folder or
 - Processes top-level folders in parallel.
 - Saves the CSV report in the selected folder.
 
-## Prerequisites
+## 2. Data Upload Tool
+-  [Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
 
-- Python 3
+## Prerequisites
+- Python
 - Git
 
 ## Install
-
 Clone the repository and change to its directory:
-
-```powershell
+```
 git clone https://github.com/noaa-pifsc/esd-cloud-migration-toolkit.git
 cd esd-cloud-migration-toolkit
 ```
 
-Create and activate a virtual environment, then install the dependencies:
-
 ```cmd
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-If PowerShell prevents virtual environment activation, run this once in the current PowerShell session and activate again:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-## Use
-
-Start the graphical application:
+## Start the App
 
 ```
 python folder_stats_2026_multi.py
