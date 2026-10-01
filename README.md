@@ -1,4 +1,4 @@
-# ESD Cloud Migration Toolkit
+# Cloud Migration Toolkit
 
 Lightweight Python tools for working with folders and migrating scientific data.
 
