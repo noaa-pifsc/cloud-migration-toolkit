@@ -6,12 +6,16 @@ A Collection of lightweight Open Source tools for working with and migrating sci
 - [PIFSC ESD Data Services Team](mailto:nmfs.pic.credinfo@noaa.gov)
 
 ### Table of Contents
-1. [Folder Stats Tool](#1-local-folder-stats-tool)
-2. [Cloud Data Tracker Tool](#2-data-tracker-tools)
-3. [Cloud Data Cleaner Tool](#3-data-cleaner-tools)
-4. [Cloud Data Manager Tool](#4-data-manager-tool)
-5. [Cloud Move and Rename Tool](#5-cloud-move-and-rename-tool)
-6. [Cloud Bucket Folder Mount Tool](#6-bucket-network-folder-mount-tool)
+- Local Tools
+    - [Folder Stats Tool](#1-local-folder-stats-tool)
+    - [Folder Copy Tool (Google Drive Robocopy Tool)](#2-folder-copy-toolrobocopy)
+    - [Local to Google Drive Automated Sync/Backup Tool](#local-to-google-drive-automated-syncbackup-tool)
+- Cloud Tools
+    - [Data Tracker Tools](#data-tracker-tools)
+    - [Data Cleaner Tools](#data-cleaner-tools)
+    - [Data Manager Tool](#data-manager-tool)
+    - [Cloud Move and Rename Tool](#cloud-move-and-rename-tool)
+    - [Bucket Network Folder Mount Tool](#bucket-network-folder-mount-tool)
 
 #### 1. Local Folder Stats Tool
 
@@ -42,19 +46,36 @@ python folder_stats_2026_multi.py
 
 Choose the folder or mapped drive to scan. The tool reports each immediate subfolder and writes a timestamped `*_network_folder_stats.csv` file to the selected location. Enable **Include file/folder count** to calculate counts as well as sizes; leave it unchecked for size-only scanning. Adjust **Number of parallel threads** if needed.
 
+#### 2. Folder Copy Tool(robocopy)
 
-### 2. Data Tracker Tools
+<a href="https://github.com/MichaelAkridge-NOAA/archive-toolbox"><img align="right" src="https://raw.githubusercontent.com/MichaelAkridge-NOAA/archive-toolbox/refs/heads/main/_docs/icons/sfm_toolbox_tool_00.png" alt="File Copy" width=400px></a>
+
+### <a href="https://github.com/MichaelAkridge-NOAA/archive-toolbox">File Copy Tool</a>
+File copy tool will copy files and directories from one place to another. 
+* It uses a subprocess to call a windows robust file copy command
+* The app will skip any existing files in a destination directory
+* It will also run multi-threaded for performance
+* If a copy process is interrupted, then simply run again since it also has the ability to restart the transfer.
+- NOTE: Multiplatform versions available 
+
+<br clear="right"/>
+
+
+### Local to Google Drive Automated Sync/Backup Tool
+- https://github.com/SamuelChiu-PIFSC/Local_Drive_Backup
+
+
+### Data Tracker Tools
 - [Placeholder - PIFSC ESD ARP Google Sheet Migration Tracker]()
 
-### 3. Data Cleaner Tools
+### Data Cleaner Tools
 ### Placeholder
 
-<a href=""><img align="right" src="./screenshots/jetstream.png" alt="Folder Stats" width=400px></a>
+<a href=""><img align="right" src="https://raw.githubusercontent.com/MichaelAkridge-NOAA/archive-toolbox/refs/heads/main/toolbox/cloud/jetstream/_icons/jetstream_logo_400px.png" alt="Folder Stats" width=400px></a>
 
+### Data Manager Tool
 
-### 4. Data Manager Tool
-
-- [Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
+- [NOAA Jetstream](https://github.com/MichaelAkridge-NOAA/jetstream) — upload data to Google Cloud Storage.
 
 #### Install
 ```
@@ -65,15 +86,19 @@ pip install noaa-jetstream
 ```
 jetstream
 ```
+<br clear="right"/>
+
 <a href=""><img align="right" src="https://raw.githubusercontent.com/DanWoodrichNOAA/GCS_Move_Rename_Tool/refs/heads/main/doc/images/app_screenshot.png" alt="" width=400px></a>
 
-## 5. Cloud Move and Rename Tool
+## Cloud Move and Rename Tool
 A small Windows PowerShell/WinForms application for moving or renaming Google Cloud Storage objects without mounting a bucket or downloading and re-uploading data.
 
 - https://github.com/DanWoodrichNOAA/GCS_Move_Rename_Tool/tree/main
 
 
-## 6. Bucket Network Folder Mount Tool
+## Bucket Network Folder Mount Tool
+- https://rclone.org/commands/rclone_mount/
+    - https://github.com/winfsp/winfsp
 
 
 #### License
