@@ -3,7 +3,7 @@
 Lightweight Open Source tools for working with and migrating scientific data to the cloud.
 
 #### Contact: 
-- [PIFSC ESD Data Services Team](nmfs.pic.credinfo@noaa.gov)
+- [PIFSC ESD Data Services Team](mailto:nmfs.pic.credinfo@noaa.gov)
 ### Table of Contents
 1. [Folder Stats Tool](#folder-stats-tool)
 2. [Data Tracker Tool](#data-tracker)
