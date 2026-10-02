@@ -1,4 +1,4 @@
-# Cloud Migration Toolkit
+# NOAA Cloud Migration Toolkit
 
 Lightweight Open Source Python tools for working with folders and migrating scientific data to the cloud.
 
