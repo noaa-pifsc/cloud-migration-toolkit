@@ -189,25 +189,14 @@ These entries are not available through this collection yet:
 
 ## Help
 
-### Folder Stats Troubleshooting
-
-| Problem | What to Check |
-| --- | --- |
-| `python` is not recognized | Confirm Python is installed and available in your terminal. If using Anaconda, open Anaconda Prompt and activate the environment you intend to use. |
-| `No module named gooey` or dependency installation fails | Run `python -m pip install -r requirements.txt` from this repository in the same environment used to launch the app. For GUI dependency errors, keep the full error message for support. |
-| App cannot access the selected folder | Confirm the path exists, the mapped drive is connected, and your account can list its contents. |
-| Report cannot be written | You need write permission in the selected root folder; there is no separate output-folder setting. Ask the folder owner for appropriate access. |
-| No CSV appears | Check the app output for errors or **No sub-directories found**. The report is saved in the selected folder, not necessarily the repository folder. |
-| Totals are smaller than expected | Check unreadable folders and root-level files, which are excluded. Compare the report scope and binary size units with your other measurements. |
-
 For toolkit questions or suggestions for the collection, contact the [PIFSC ESD Data Services Team](mailto:nmfs.pic.credinfo@noaa.gov). Include the tool name, operating system, what you tried, and a sanitized error message. Do not send passwords, authentication tokens, or sensitive paths/data.
 
 For external-tool issues, start with that project's documentation and issue tracker.
 
-## License
+#### License
 
 See [LICENSE.md](./LICENSE.md) for details.
 
-## Disclaimer
+#### Disclaimer
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an “as is” basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
