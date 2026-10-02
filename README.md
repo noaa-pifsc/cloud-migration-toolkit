@@ -1,16 +1,14 @@
 # NOAA Cloud Migration Toolkit
-
+<a href=""><img align="right" src="./screenshots/draft_logo.png" alt="Folder Stats" width=400px></a>
 Lightweight Open Source tools for working with and migrating scientific data to the cloud.
 
-- Contact: Data Services Team
+#### Contact: 
+- [PIFSC ESD Data Services Team](nmfs.pic.credinfo@noaa.gov)
 ### Table of Contents
 1. [Folder Stats Tool](#folder-stats-tool)
 2. [Data Tracker Tool](#data-tracker)
 3. [Data Cleaner Tool](#data-cleaner-tool)
 4. [Data Upload Tool](#data-upload-tool)
-
-<a href=""><img align="right" src="./screenshots/folder_stats.png" alt="Folder Stats" width=400px></a>
-
 
 #### 1. Folder Stats Tool
 
@@ -21,6 +19,7 @@ The Folder Stats Tool scans the immediate subdirectories of a selected folder or
 - Processes top-level folders in parallel.
 - Saves the CSV report in the selected folder.
 
+<a href=""><img align="right" src="./screenshots/folder_stats.png" alt="Folder Stats" width=400px></a>
 #### Install
 Clone the repository and change to its directory:
 ```
