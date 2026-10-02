@@ -1,0 +1,51 @@
+site_name: NOAA-NMFS Cloud Migration Toolkit
+site_description: Practical guidance for moving scientific data to the cloud, managing it there, and using it locally.
+site_url: https://noaa-pifsc.github.io/cloud-migration-toolkit/
+repo_url: https://github.com/noaa-pifsc/cloud-migration-toolkit
+repo_name: noaa-pifsc/cloud-migration-toolkit
+edit_uri: edit/gh-pages/docs/
+docs_dir: docs
+site_dir: site
+copyright: This toolkit is a scientific product, not official NOAA communication. See Help for terms of use.
+
+theme:
+  name: material
+  language: en
+  font:
+    text: Source Sans 3
+    code: Source Code Pro
+  palette:
+    primary: teal
+    accent: blue
+  features:
+    - navigation.indexes
+    - navigation.footer
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Move:
+      - Overview: move/index.md
+  - Work:
+      - Overview: work/index.md
+  - Use:
+      - Overview: use/index.md
+  - Tools:
+      - Choose a Tool: tools/index.md
+      - Folder Stats Quick Start: tools/folder-stats.md
+      - External Tools: tools/external-tools.md
+  - Help: help.md

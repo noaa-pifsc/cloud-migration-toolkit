@@ -1,1 +1,5 @@
 screenshots/draft_logo.jpeg
+site/
+.venv-docs/
+__pycache__/
+*.py[cod]
