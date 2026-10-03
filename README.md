@@ -1,4 +1,4 @@
-# NOAA-NMFS Cloud Migration Toolkit
+# Cloud Migration Toolkit
 > ⚠️ **Note: Under Active Development**
 <a href=""><img align="right" src="./screenshots/draft_logo.png" alt="Folder Stats" width=400px></a>
 
