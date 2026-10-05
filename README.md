@@ -30,14 +30,47 @@ Before a large transfer, confirm permissions, storage capacity, and likely costs
 
 ## Work with Data in the Cloud
 
-Start here if your data is already in a GCS bucket and you need to browse or organize it.
+Start here if your data is already in a GCS bucket or Google Drive and you need to browse, organize, or access it from an R cloud workstation.
 
 - **Browse, Move, rename, sync, aduit bucket contents and monitor uploads:** see [NOAA Jetstream](#noaa-jetstream).
 - **Simple Move or rename cloud objects:** see the [GCS Move and Rename Tool](#gcs-move-and-rename-tool). It runs on your Windows computer but performs cloud operations without downloading and re-uploading the data locally.
 
 Cloud objects do not always behave like files on a local disk. Check destination paths, overwrite behavior, required permissions, and cost warnings before moving or renaming data; do not assume a move is instantaneous or atomic. Avoid large reorganizations through a mounted drive without checking how the mount handles them.
 
-**Current scope:** this collection covers data transfer, access, and management. It does not yet provide a guide or environment for running analyses, notebooks, or other computing jobs in the cloud.
+### Mount a GCS Bucket on an R Cloud Workstation
+
+Use the [NMFS Open Science CloudComputingSetup R resources](https://github.com/nmfs-opensci/CloudComputingSetup/tree/main/R) for bucket mounting and R read/write examples. The `mount_bucket.R` file contains **shell commands to run in the workstation terminal**, despite its extension; `mount_bucket_folder.sh` demonstrates mounting a selected bucket folder with `gcsfuse --only-dir`.
+
+Review the scripts before running them and replace the example bucket, folder, and mount point with your own. Confirm bucket IAM permissions and the workstation's approved authentication method. The examples use `gcloud auth application-default login --no-launch-browser`; Google Drive OAuth is separate and does not grant bucket access. Installing Cloud Storage FUSE may require an administrator, and containerized workstations must permit FUSE mounts.
+
+After mounting, R can read paths under the mount point, for example `list.files(path.expand("~/my_gcs_bucket"))`. Cloud Storage FUSE is not a full local filesystem: check [its semantics and limitations](https://cloud.google.com/storage/docs/cloud-storage-fuse/overview) before writing or running workloads with frequent small-file access. Mounts need to be recreated after a workstation restart.
+
+### Mount Google Drive on an R Cloud Workstation
+
+Follow the [rclone Google Drive guide](https://rclone.org/drive/) and [headless authentication instructions](https://rclone.org/remote_setup/). This repository includes a [Linux Google Drive mounting helper](scripts/google_drvie_script.sh); run it in the workstation terminal as the same user that runs RStudio, **not with sudo**.
+
+1. Install a current [rclone release](https://rclone.org/install/) and have an administrator install FUSE3 if needed (`sudo apt install fuse3` on Debian/Ubuntu). The workstation must expose `/dev/fuse` and allow FUSE mounts; ask the cloud administrator if mounting is blocked.
+2. Obtain an organization-approved OAuth client ID and secret from the GCP team through the [Jira service portal](https://apps-st.fisheries.noaa.gov/jira/servicedesk/customer/portal/14). Do not rely on rclone's shared client ID, which upstream says is being retired in 2026.
+3. Run the helper's `config` action. Create a remote named `gdrive`, choose storage type `drive` by name, and select `drive.readonly` for reading or `drive` for reading/writing. Leave the service-account file blank for user OAuth. Answer **no** to browser authentication on the cloud workstation. On a trusted computer with a browser and preferably the same rclone version, run the **exact** `rclone authorize` command shown by the workstation and paste its result directly into `config_token`. Select a Shared Drive when prompted if that is your destination, then save and quit.
+4. Mount and test a small file. The helper defaults to read-only; writing requires both the `drive` OAuth scope and appropriate Drive permissions.
+
+```bash
+bash scripts/google_drvie_script.sh config
+bash scripts/google_drvie_script.sh mount
+```
+
+In R, use `list.files(path.expand("~/gdrive"))` or read a known file beneath that path. To enable writes and later unmount:
+
+```bash
+bash scripts/google_drvie_script.sh unmount
+bash scripts/google_drvie_script.sh mount --read-write
+# Close files and verify that pending uploads have finished before unmounting.
+bash scripts/google_drvie_script.sh unmount
+```
+
+The helper supports `GDRIVE_REMOTE`, `GDRIVE_MOUNT`, `GDRIVE_CACHE`, and `GDRIVE_LOG` overrides; run its `help` action for defaults. Logs go to `~/.local/state/rclone/gdrive.log`, and writes are cached locally. Ensure enough cache disk space, retain the cache until uploads finish, and verify output in Drive before stopping the workstation. Keep tokens, client secrets, and the rclone configuration out of Git, tickets, and chat. Google Docs/Sheets are exported formats rather than ordinary mounted files; check rclone's limitations. A mount is neither a backup nor a guaranteed offline copy.
+
+**Current scope:** this collection covers data transfer, access, management, and links to R cloud-workstation mounting examples. It does not provision a computing environment or provide a complete analysis workflow.
 
 ## Use Cloud Data Locally
 
@@ -63,6 +96,8 @@ A mount is not a full offline copy or a backup. Reads, writes, and repeated scan
 | Upload data and browse buckets | [NOAA Jetstream](#noaa-jetstream) | Local to GCS; also offers Drive transfers | External |
 | Move or rename GCS objects | [GCS Move and Rename Tool](#gcs-move-and-rename-tool) | Within/between GCS buckets | External; Windows |
 | Access cloud storage as a local drive | [rclone Mount](#rclone-mount) | Cloud accessed locally | External |
+| Mount a GCS bucket for R cloud work | [CloudComputingSetup R Resources](#cloudcomputingsetup-r-resources) | GCS accessed from a cloud workstation | External |
+| Mount Google Drive for R cloud work | [Google Drive Mounting Helper](scripts/google_drvie_script.sh) and [setup guide](#mount-google-drive-on-an-r-cloud-workstation) | Drive accessed from a Linux cloud workstation | Included helper; external rclone/FUSE3 |
 
 ## Tool Details
 ### Folder Stats Quick Start
@@ -121,7 +156,15 @@ rclone mount supports Windows, macOS, Linux, and FreeBSD, with platform-specific
 
 Check the guide's **Limitations** and **VFS File Caching** sections before editing files through a mount. Many applications need write caching; pending writes must finish uploading before you treat them as safely stored in the cloud. Consider read-only access when you only need to inspect data.
 
-**Setup:** [rclone mount documentation](https://rclone.org/commands/rclone_mount/) and [WinFsp for Windows](https://github.com/winfsp/winfsp).
+**Setup:** [rclone mount documentation](https://rclone.org/commands/rclone_mount/), [Google Drive configuration](https://rclone.org/drive/), and [WinFsp for Windows](https://github.com/winfsp/winfsp). For a Linux R cloud workstation, see [Mount Google Drive on an R Cloud Workstation](#mount-google-drive-on-an-r-cloud-workstation) and the included [mounting helper](scripts/google_drvie_script.sh).
+
+### CloudComputingSetup R Resources
+
+**Use for:** setting up bucket access and mounting GCS storage on an R cloud workstation.
+
+The NMFS Open Science collection includes bucket-mounting scripts, R read/write examples, GitHub setup, and package-install examples. Review and customize the example paths and authentication before use. Bucket permissions and a workstation that permits FUSE mounts are required; these resources do not automatically grant access or provision a workstation.
+
+**Setup:** [CloudComputingSetup R resources](https://github.com/nmfs-opensci/CloudComputingSetup/tree/main/R) and the [bucket-mounting guidance above](#mount-a-gcs-bucket-on-an-r-cloud-workstation).
 
 ## Planned Tools
 
