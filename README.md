@@ -91,6 +91,7 @@ A mount is not a full offline copy or a backup. Reads, writes, and repeated scan
 | I Need To... | Tool / Setup | Data Location | Availability |
 | --- | --- | --- | --- |
 | Estimate subfolder sizes and counts | [Folder Stats](tools/folder-stats/README.md) | Local folder or mapped drive | Included |
+| Summarize immediate subfolder sizes in a GCS bucket | [Google Bucket Stats](#google-bucket-stats) | GCS bucket or prefix | Included script |
 | Copy or stage folders | [File Copy Tool](#file-copy-tool) | Local or accessible filesystem paths | External |
 | Schedule selected code/project backups | [Local Drive Backup](#local-drive-backup) | Local to a synced folder, such as Google Drive | External |
 | Upload data and browse buckets | [NOAA Jetstream](#noaa-jetstream) | Local to GCS; also offers Drive transfers | External |
@@ -103,6 +104,21 @@ A mount is not a full offline copy or a backup. Reads, writes, and repeated scan
 ### Folder Stats Quick Start
 
 See the [Folder Stats Quick Start guide](tools/folder-stats/README.md) for installation, launch, and scan instructions.
+
+### Google Bucket Stats
+
+**Use for:** calculating the sizes of immediate subfolders under a GCS bucket or prefix and saving the results to a timestamped CSV file.
+
+Requires Python with `pandas`, the Google Cloud CLI (`gcloud`), an authenticated account, and permission to list and inspect objects at the selected path. The script runs `gcloud storage ls` and parallel `gcloud storage du -s` commands; review request volume and expected costs before scanning a large bucket.
+
+Run from the repository root:
+
+```shell
+python -m pip install pandas
+python scripts/google_bucket_stats.py
+```
+
+At the prompt, enter a bucket name or `gs://` path. The CSV is written to the current working directory.
 
 ## External Tools
 These projects are not bundled here. Use their own documentation for current releases, supported platforms, installation, authentication, and troubleshooting. Installing a tool does not automatically grant access to cloud data.
